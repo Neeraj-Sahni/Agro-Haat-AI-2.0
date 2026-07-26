@@ -1,0 +1,193 @@
+<?php
+session_start();
+require_once '../config/db.php';
+
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'Customer') {
+    header("Location: ../login.php");
+    exit();
+}
+
+$page_title = "My Shopping Cart";
+include '../includes/header.inc.php';
+include '../includes/navbar_customer.inc.php';
+
+$cart = $_SESSION['cart'] ?? [];
+$total = 0;
+?>
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<div class="container mt-5 mb-5">
+    <h2 class="fw-bold mb-4" style="color: var(--primary-blue) !important;">Shopping Cart 🛒</h2>
+
+    <?php if (count($cart) > 0): ?>
+        <div class="row g-5">
+            <div class="col-lg-8 animate-fade-in-up">
+                <div class="glass-card p-4">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="text-muted small">
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th class="text-center">Quantity</th>
+                                    <th class="text-end">Subtotal</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($cart as $id => $item): 
+                                    $subtotal = $item['price'] * $item['quantity'];
+                                    $total += $subtotal;
+                                ?>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="../public/uploads/farm_products/<?= htmlspecialchars($item['product_image'] ?? 'default_product.jpg') ?>" class="rounded-3 me-3" style="width: 50px; height: 50px; object-fit: cover;" onerror="this.src='https://placehold.co/100x100?text=Item'">
+                                                <div>
+                                                    <h6 class="fw-bold mb-0"><?= htmlspecialchars($item['name']) ?></h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>₹<?= number_format($item['price'], 2) ?></td>
+                                        <td class="text-center">
+                                            <div class="d-flex justify-content-center">
+                                                <form action="../actions/cart_action.php" method="POST" class="d-flex align-items-center">
+                                                    <input type="hidden" name="action" value="update">
+                                                    <input type="hidden" name="product_id" value="<?= $id ?>">
+                                                    <button type="submit" name="qty_change" value="minus" class="btn btn-sm btn-light rounded-circle"><i class="fas fa-minus small"></i></button>
+                                                    <span class="mx-3 fw-bold"><?= $item['quantity'] ?></span>
+                                                    <button type="submit" name="qty_change" value="plus" class="btn btn-sm btn-light rounded-circle"><i class="fas fa-plus small"></i></button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                        <td class="text-end fw-bold">₹<?= number_format($subtotal, 2) ?></td>
+                                        <td class="text-end">
+                                            <a href="../actions/cart_action.php?action=remove&id=<?= $id ?>" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 animate-fade-in-up" style="animation-delay: 0.2s;">
+                
+                <!-- Location Card -->
+                <div class="glass-card p-4 mb-4">
+                    <h5 class="fw-bold mb-3">
+                        <i class="fas fa-map-marker-alt text-danger me-2"></i>Delivery Location
+                    </h5>
+                    <div id="locationStatus" class="alert alert-warning small py-2">
+                        <i class="fas fa-exclamation-circle me-2"></i>Location not shared yet.
+                    </div>
+                    <button type="button" id="shareLocationBtn" class="btn btn-outline-success rounded-pill w-100 mb-3">
+                        <i class="fas fa-location-arrow me-2"></i>Share My Live Location
+                    </button>
+                    <div id="locationMap" style="height: 180px; border-radius: 12px; display:none;"></div>
+                </div>
+
+                <!-- Summary Card -->
+                <div class="glass-card p-4">
+                    <h5 class="fw-bold mb-4">Summary</h5>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="text-muted">Subtotal</span>
+                        <span class="fw-bold">₹<?= number_format($total, 2) ?></span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-4">
+                        <span class="text-muted">Delivery</span>
+                        <span class="text-success fw-bold">FREE</span>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between mb-4">
+                        <h5 class="fw-bold">Total</h5>
+                        <h4 class="fw-bold text-primary">₹<?= number_format($total, 2) ?></h4>
+                    </div>
+                    <form action="../actions/checkout_action.php" method="POST" id="checkoutForm">
+                        <!-- Hidden location fields -->
+                        <input type="hidden" name="customer_lat" id="customer_lat">
+                        <input type="hidden" name="customer_lng" id="customer_lng">
+                        <input type="hidden" name="customer_address" id="customer_address">
+                        <button type="submit" class="btn btn-premium btn-premium-blue w-100 py-3 shadow">
+                            Proceed to Checkout
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <?php else: ?>
+        <div class="text-center py-5 animate-fade-in-up">
+            <i class="fas fa-shopping-cart text-muted mb-4 opacity-10" style="font-size: 6rem;"></i>
+            <h4 class="text-muted">Your cart is feeling a bit lonely.</h4>
+            <p class="text-muted mb-4">Explore our fresh harvest and add some color to your life!</p>
+            <a href="browse_products.php" class="btn btn-premium btn-premium-blue px-5 py-3">Explore Marketplace</a>
+        </div>
+    <?php endif; ?>
+</div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+let locationMap = null;
+
+document.getElementById('shareLocationBtn').addEventListener('click', function() {
+    const btn = this;
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Getting location...';
+
+    if (!navigator.geolocation) {
+        alert('Geolocation supported nahi hai aapke browser mein!');
+        btn.disabled = false;
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+        async function(position) {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+
+            document.getElementById('customer_lat').value = lat;
+            document.getElementById('customer_lng').value = lng;
+
+            // Free reverse geocoding
+            try {
+                const res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`);
+                const data = await res.json();
+                document.getElementById('customer_address').value = data.display_name || `${lat},${lng}`;
+            } catch(e) {
+                document.getElementById('customer_address').value = `${lat},${lng}`;
+            }
+
+            // Map dikhao
+            const mapDiv = document.getElementById('locationMap');
+            mapDiv.style.display = 'block';
+
+            if (!locationMap) {
+                locationMap = L.map('locationMap').setView([lat, lng], 15);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(locationMap);
+                L.marker([lat, lng])
+                    .addTo(locationMap)
+                    .bindPopup('📍 Delivery Location')
+                    .openPopup();
+            }
+
+            // Status update
+            document.getElementById('locationStatus').className = 'alert alert-success small py-2';
+            document.getElementById('locationStatus').innerHTML = '<i class="fas fa-check-circle me-2"></i>Location shared successfully!';
+            btn.innerHTML = '<i class="fas fa-check me-2"></i>Location Shared ✅';
+        },
+        function(error) {
+            alert('Location access denied! Browser settings mein allow karo.');
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-location-arrow me-2"></i>Share My Live Location';
+        },
+        { enableHighAccuracy: true, timeout: 10000 }
+    );
+});
+</script>
+
+<?php include '../includes/footer.inc.php'; ?>

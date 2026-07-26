@@ -1,0 +1,89 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+}
+body{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(rgba(18, 17, 17, 0.7), rgba(14, 13, 13, 0.7)), url('../images/image2.jpg');
+    background-position: center;
+    background-size: cover;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 550px;
+}
+
+.container{
+    width: 400px;
+    margin-top: 0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px gray;
+    color: white;
+    opacity: 80%;
+}
+h2{
+    color: #ffffff;
+    text-shadow: 2px 2px 4px #000000;
+    text-align: center;
+}
+.description{
+    font-family: 'Times New Roman', Times, serif;
+    width: 500px;
+    font-size: 25px;
+    color: white;
+    padding-left: 10px;
+}
+
+.login{
+    
+    text-align: center;
+    font-size: 14px;
+    color: rgb(247, 244, 244);
+}
+
+input{
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #d68d8d;
+}
+
+button{
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    background: #4CAF50;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover{
+    background: #388e3c;
+}
+
+a{
+    color: #3318c7;
+    text-decoration: none;
+    font-weight: bold;
+}
+.page {
+    animation: fadeSlide 0.6s ease;
+}
+
+@keyframes fadeSlide {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

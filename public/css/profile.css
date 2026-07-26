@@ -1,0 +1,46 @@
+body {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    min-height: 100vh;
+}
+.card {
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    background: rgba(255,255,255,0.95);
+}
+.card-header {
+    background: #4cffb0;
+    color: #000;
+    font-weight: bold;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    text-align: center;
+}
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #4cffb0;
+}
+.btn-primary {
+    background-color: #4cffb0;
+    border: none;
+    color: #000;
+    font-weight: bold;
+}
+.btn-primary:hover {
+    background-color: #3ae6a1;
+}
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+input[type="file"] {
+    border-radius: 10px;
+}
+.alert {
+    border-radius: 10px;
+}
