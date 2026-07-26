@@ -4,6 +4,8 @@
 
 .env
 
+composer.lock
+
 composer.phar
 
 .idea/

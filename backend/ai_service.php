@@ -1,16 +1,24 @@
 <?php
 
+require_once __DIR__ . '/../config/api_keys.php';
+
 function getAIResponse($prompt)
 {
-    $ollamaUrl = 'http://localhost:11434/api/generate';
+    // Future: Gemini/OpenRouter support
+    if (AI_PROVIDER !== 'ollama') {
+        return [
+            'success' => false,
+            'message' => 'Selected AI provider is not configured yet.'
+        ];
+    }
 
     $data = [
-        'model' => 'llama3.2',
+        'model'  => OLLAMA_MODEL,
         'prompt' => $prompt,
         'stream' => false
     ];
 
-    $ch = curl_init($ollamaUrl);
+    $ch = curl_init(OLLAMA_URL);
 
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POST, true);
@@ -21,7 +29,7 @@ function getAIResponse($prompt)
     curl_setopt($ch, CURLOPT_TIMEOUT, 120);
 
     $response = curl_exec($ch);
-    $error = curl_error($ch);
+    $error    = curl_error($ch);
 
     curl_close($ch);
 

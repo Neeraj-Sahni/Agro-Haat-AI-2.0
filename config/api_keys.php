@@ -1,13 +1,13 @@
 <?php
-// API Configuration for Smart Farming Features
-// Replace these placeholders with your actual API keys
 
-// AI / Chatbot API Key (e.g., Gemini, OpenAI, etc.)
-define('AI_API_KEY', 'YOUR_AI_API_KEY_HERE');
+require_once __DIR__ . '/env.php';
 
-// Weather API Key (e.g., OpenWeatherMap)
-define('WEATHER_API_KEY', 'YOUR_WEATHER_API_KEY_HERE');
+define('AI_PROVIDER', $_ENV['AI_PROVIDER'] ?? 'ollama');
 
-// Market Data API Key (if any)
-define('MARKET_DATA_API_KEY', 'YOUR_MARKET_DATA_API_KEY_HERE');
-?>
+define('AI_API_KEY', $_ENV['AI_API_KEY'] ?? '');
+
+define('WEATHER_API_KEY', $_ENV['WEATHER_API_KEY'] ?? '');
+
+define('OLLAMA_URL', $_ENV['OLLAMA_URL'] ?? 'http://localhost:11434/api/generate');
+
+define('OLLAMA_MODEL', $_ENV['OLLAMA_MODEL'] ?? 'llama3.2');
