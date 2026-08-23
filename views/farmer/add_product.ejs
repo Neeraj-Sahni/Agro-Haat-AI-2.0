@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product - AI Smart Farming</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body {
+            background-color: #f4f7f6;
+            font-family: 'Inter', sans-serif;
+        }
+        .navbar {
+            background-color: #2e7d32;
+        }
+        .navbar-brand, .nav-link {
+            color: #ffffff !important;
+        }
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            padding: 30px;
+        }
+        .form-label {
+            font-weight: 600;
+            color: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="/farmer/manage_products"><i class="fas fa-arrow-left me-2"></i>Back to Inventory</a>
+            <span class="navbar-text text-white fw-bold ms-auto">
+                <i class="fas fa-plus-circle me-1"></i> Add Product
+            </span>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5 mb-5 pb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <h2 class="text-success fw-bold text-center mb-4">List a New Product</h2>
+                
+                <% if (typeof message !== 'undefined' && message) { %>
+                <div class="alert alert-<%= typeof messageType !== 'undefined' ? messageType : 'danger' %> alert-dismissible fade show" role="alert">
+                    <%= message %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <% } %>
+
+                <div class="card bg-white">
+                    <form action="/farmer/add_product" method="POST" enctype="multipart/form-data">
+                        
+                        <div class="mb-4">
+                            <label class="form-label"><i class="fas fa-tag me-1"></i> Product Name</label>
+                            <input type="text" name="product_name" class="form-control" placeholder="e.g. Organic Tomatoes" required>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fas fa-layer-group me-1"></i> Category</label>
+                                <select name="category" class="form-select" required>
+                                    <option value="" disabled selected>Select Category</option>
+                                    <option value="Vegetables">Vegetables</option>
+                                    <option value="Fruits">Fruits</option>
+                                    <option value="Grains">Grains</option>
+                                    <option value="Dairy">Dairy</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mt-3 mt-md-0">
+                                <label class="form-label"><i class="fas fa-image me-1"></i> Product Image</label>
+                                <input class="form-control" type="file" name="product_image" id="product_image">
+                                <div class="form-text">Optional. Max size: 5MB (JPG, PNG, GIF).</div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <label class="form-label"><i class="fas fa-rupee-sign me-1"></i> Price</label>
+                                <input type="number" step="0.01" name="price" class="form-control" placeholder="0.00" required>
+                            </div>
+                            <div class="col-md-4 mt-3 mt-md-0">
+                                <label class="form-label"><i class="fas fa-balance-scale me-1"></i> Unit</label>
+                                <select name="unit" class="form-select" required>
+                                    <option value="kg">per kg</option>
+                                    <option value="gram">per 100g</option>
+                                    <option value="piece">per piece</option>
+                                    <option value="dozen">per dozen</option>
+                                    <option value="liter">per liter</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mt-3 mt-md-0">
+                                <label class="form-label"><i class="fas fa-boxes me-1"></i> Available Qty</label>
+                                <input type="number" step="0.01" name="quantity_available" class="form-control" placeholder="e.g. 50" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label"><i class="fas fa-align-left me-1"></i> Product Description</label>
+                            <textarea name="description" class="form-control" rows="4" placeholder="Describe the quality, freshness, or farming method..." required></textarea>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-success rounded-pill px-5 py-2 shadow-sm fw-bold">
+                                <i class="fas fa-check-circle me-2"></i> List Product for Sale
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<%- include('../partials/header', { page_title: 'Manage Orders' }) %>
+<%- include('../partials/navbar_farmer') %>
+
+<div class="container mt-5 mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-4 animate-fade-in-up">
+        <h2 class="text-success fw-bold mb-0">Customer Orders 📦</h2>
+        <div class="d-flex">
+            <form action="/farmer/view_orders" method="GET" class="glass-card p-1 d-flex me-2">
+                <input type="text" name="search" class="form-control border-0 bg-transparent" placeholder="Customer name..." value="<%= search || '' %>">
+                <button type="submit" class="btn btn-premium btn-premium-green ms-1"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Filter Pills -->
+    <div class="mb-4 animate-fade-in-up" style="animation-delay: 0.1s;">
+        <div class="glass-card p-1 d-inline-flex overflow-auto" style="max-width: 100%;">
+            <% 
+            const statuses = ['All', 'Pending', 'Confirmed', 'Shipped', 'Delivered', 'Cancelled'];
+            statuses.forEach(s => {
+                const active = (status_filter === s) ? 'btn-premium btn-premium-green shadow' : 'text-muted';
+            %>
+                <a href="?status=<%= s %>&search=<%= encodeURIComponent(search || '') %>" class="btn btn-sm rounded-pill px-4 py-2 me-1 text-decoration-none <%= active %>"><%= s %></a>
+            <% }); %>
+        </div>
+    </div>
+
+    <div class="row g-4 animate-fade-in-up" style="animation-delay: 0.2s;">
+        <% if (orders && orders.length > 0) { %>
+            <% orders.forEach(order => { 
+                const status_map = {
+                    'Pending': 'bg-secondary',
+                    'Confirmed': 'bg-primary',
+                    'Shipped': 'bg-info',
+                    'Delivered': 'bg-success',
+                    'Cancelled': 'bg-danger'
+                };
+                const status_class = status_map[order.status] || 'bg-light text-dark';
+            %>
+                <div class="col-12">
+                    <div class="glass-card p-4 h-100 overflow-hidden border-start border-4 border-<%= status_class.replace('bg-', '') %>">
+                        <div class="row align-items-center">
+                            <div class="col-md-3">
+                                <h6 class="text-muted small fw-bold mb-1">ORDER #<%= String(order.id).padStart(5, '0') %></h6>
+                                <h5 class="fw-bold mb-0"><%= order.customer_name %></h5>
+                                <small class="text-muted"><%= new Date(order.order_date).toLocaleString() %></small>
+                            </div>
+                            <div class="col-md-3 text-center">
+                                <span class="badge <%= status_class %> rounded-pill px-4 py-2" style="font-size: 0.85rem;"><%= order.status %></span>
+                            </div>
+                            <div class="col-md-3 text-center">
+                                <h5 class="fw-bold mb-0 text-success">₹<%= Number(order.total_price).toFixed(2) %></h5>
+                                <small class="text-muted">Payment Mode: Prepaid</small>
+                            </div>
+                            <div class="col-md-3 text-end">
+                                <button class="btn btn-outline-success btn-sm rounded-pill px-4 me-2" data-bs-toggle="collapse" data-bs-target="#order-<%= order.id %>">View Details</button>
+                                <div class="dropdown d-inline-block">
+                                    <button class="btn btn-premium btn-premium-green btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">Update</button>
+                                    <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+                                        <li><a class="dropdown-item" href="/actions/update_order_status.php?id=<%= order.id %>&status=Confirmed">Confirm Order</a></li>
+                                        <li><a class="dropdown-item" href="/actions/update_order_status.php?id=<%= order.id %>&status=Shipped">Mark as Shipped</a></li>
+                                        <li><a class="dropdown-item" href="/actions/update_order_status.php?id=<%= order.id %>&status=Delivered">Mark as Delivered</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item text-danger" href="/actions/update_order_status.php?id=<%= order.id %>&status=Cancelled">Cancel Order</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Expanded Details -->
+                        <div class="collapse mt-4" id="order-<%= order.id %>">
+                            <div class="glass-card p-3 bg-light border-0">
+                                <h6 class="fw-bold border-bottom pb-2 mb-3">Order Details</h6>
+                                <p><strong>Product ID:</strong> <%= order.product_id %></p>
+                                <p><strong>Quantity:</strong> <%= order.quantity %></p>
+                                <p><strong>Total Price:</strong> ₹<%= Number(order.total_price).toFixed(2) %></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <div class="col-12 text-center py-5">
+                <i class="fas fa-box-open text-muted mb-3" style="font-size: 3rem;"></i>
+                <h4 class="text-muted">No orders found for the selected criteria.</h4>
+            </div>
+        <% } %>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>

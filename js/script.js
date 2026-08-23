@@ -5,7 +5,8 @@ function showDemo(type) {
             buttons.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
             if (type === "weather") {
-                document.getElementById("weatherPopup").style.display = "block";
+                const wPopup = document.getElementById("weatherPopup");
+                if (wPopup) wPopup.style.display = "block";
             }
             
             const demos = {

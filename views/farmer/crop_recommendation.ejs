@@ -1,0 +1,205 @@
+<%- include('../partials/header', { page_title: 'AI Crop Recommendation' }) %>
+<%- include('../partials/navbar_farmer') %>
+
+<div class="container mt-5 mb-5">
+    <div class="row g-5">
+        <div class="col-md-5 animate-fade-in-up">
+            <h2 class="text-success fw-bold mb-4">AI Crop Insight 🧠🌱</h2>
+            <p class="text-muted mb-4">Make data-driven decisions. Our AI analyzes your soil, location, and weather patterns to recommend the most profitable crops with exact application instructions.</p>
+            
+            <div class="glass-card p-4">
+                <form id="recommendationForm">
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold text-muted">Soil Type</label>
+                        <select id="soilType" class="form-select rounded-pill" required>
+                            <option value="">Select Soil Type</option>
+                            <option value="Alluvial">Alluvial (Most Fertile)</option>
+                            <option value="Black">Black (Cotton Soil)</option>
+                            <option value="Red">Red Soil</option>
+                            <option value="Laterite">Laterite Soil</option>
+                            <option value="Sandy">Sandy Soil</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold text-muted">Current Season</label>
+                        <select id="season" class="form-select rounded-pill" required>
+                            <option value="Kharif">Kharif (Monsoon)</option>
+                            <option value="Rabi">Rabi (Winter)</option>
+                            <option value="Zaid">Zaid (Summer)</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label small fw-bold text-muted">Farm Location (GPS Auto-detected)</label>
+                        <div class="input-group">
+                            <input type="text" id="locationInput" class="form-control rounded-start-pill" value="Detecting location..." readonly>
+                            <button type="button" class="btn btn-outline-success rounded-end-pill" id="detectLocBtn"><i class="fas fa-location-arrow"></i></button>
+                        </div>
+                    </div>
+                    <button type="button" id="getRecommendation" class="btn btn-premium btn-premium-green w-100 py-3">Generate 8-Point AI Report</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <div id="resultCard" class="glass-card p-4 h-100 d-none animate-fade-in-up">
+                <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+                    <h5 class="fw-bold text-success mb-0"><i class="fas fa-microchip me-2"></i>Structured AI Analysis</h5>
+                    <span class="badge bg-success rounded-pill px-3">Live Groq AI</span>
+                </div>
+
+                <div class="text-center mb-4 p-3 bg-light rounded-4">
+                    <i class="fas fa-seedling fa-3x text-success mb-2"></i>
+                    <h3 id="recommendedCrop" class="fw-bold text-dark mb-0">--</h3>
+                </div>
+
+                <!-- 8-Point Structured Breakdown -->
+                <div class="row g-3 small">
+                    <div class="col-12">
+                        <div class="p-3 bg-white rounded-3 border shadow-sm">
+                            <h6 class="fw-bold text-success mb-1">❓ Why (कारण विश्लेषण):</h6>
+                            <p id="resWhy" class="mb-0 text-muted">--</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-white rounded-3 border shadow-sm h-100">
+                            <h6 class="fw-bold text-warning mb-1">⚡ Yield / Severity (उपज / स्तर):</h6>
+                            <p id="resSeverity" class="mb-0 text-muted">--</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-white rounded-3 border shadow-sm h-100">
+                            <h6 class="fw-bold text-primary mb-1">💊 Treatment / Fertilizer (इलाज व पोषण):</h6>
+                            <p id="resTreatment" class="mb-0 text-muted">--</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-white rounded-3 border shadow-sm h-100">
+                            <h6 class="fw-bold text-info mb-1">⚖️ Quantity (मात्रा):</h6>
+                            <p id="resQuantity" class="mb-0 text-muted">--</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-white rounded-3 border shadow-sm h-100">
+                            <h6 class="fw-bold text-secondary mb-1">🚜 How to Apply (प्रयोग विधि):</h6>
+                            <p id="resHow" class="mb-0 text-muted">--</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-white rounded-3 border shadow-sm h-100">
+                            <h6 class="fw-bold text-danger mb-1">⏰ When to Apply (सही समय):</h6>
+                            <p id="resWhen" class="mb-0 text-muted">--</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-white rounded-3 border shadow-sm h-100">
+                            <h6 class="fw-bold text-success mb-1">🛡️ Prevention (बचाव के उपाय):</h6>
+                            <p id="resPrevention" class="mb-0 text-muted">--</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <button class="btn btn-outline-success btn-sm w-100 rounded-pill" onclick="window.print()"><i class="fas fa-print me-2"></i>Download AI Report</button>
+                </div>
+            </div>
+            
+            <div id="placeholderResult" class="glass-card p-5 h-100 d-flex flex-column align-items-center justify-content-center border-dashed border-2 text-muted">
+                <i class="fas fa-location-dot fa-3x mb-3 text-success opacity-50"></i>
+                <h5 class="fw-bold">Real-time Location & Soil AI</h5>
+                <p class="mb-0 text-center small">Select soil & season to get complete 8-point structured AI advice.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5 animate-fade-in-up" style="animation-delay: 0.3s;">
+        <h5 class="fw-bold mb-4">Your Recommendation History</h5>
+        <div class="row g-3">
+            <% if (history && history.length > 0) { %>
+                <% history.forEach(row => { %>
+                    <div class="col-md-4">
+                        <div class="glass-card p-3 border-start border-4 border-success">
+                            <h6 class="fw-bold mb-1"><%= row.recommended_crop %></h6>
+                            <small class="text-muted d-block mb-2">Input: <%= row.soil_type %>, <%= row.weather_condition %></small>
+                            <small class="text-muted"><%= new Date(row.created_at).toLocaleDateString() %></small>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <div class="col-12">
+                    <p class="text-muted italic">No previous recommendations found.</p>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+<script>
+// Auto-detect browser location
+function detectLocation() {
+    const locInput = document.getElementById('locationInput');
+    if (navigator.geolocation) {
+        locInput.value = 'Detecting GPS...';
+        navigator.geolocation.getCurrentPosition(
+            pos => {
+                const lat = pos.coords.latitude.toFixed(4);
+                const lng = pos.coords.longitude.toFixed(4);
+                locInput.value = `GPS Location: ${lat}, ${lng}`;
+            },
+            err => {
+                locInput.value = 'Nagpur, Maharashtra (Location Auto-set)';
+            },
+            { timeout: 5000 }
+        );
+    } else {
+        locInput.value = 'Nagpur, Maharashtra';
+    }
+}
+document.addEventListener('DOMContentLoaded', detectLocation);
+document.getElementById('detectLocBtn').addEventListener('click', detectLocation);
+
+document.getElementById('getRecommendation').addEventListener('click', async function() {
+    const soil     = document.getElementById('soilType').value;
+    const season   = document.getElementById('season').value;
+    const location = document.getElementById('locationInput').value;
+
+    if (!soil) { alert("Please select soil type"); return; }
+
+    const btn = document.getElementById('getRecommendation');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>AI Generating 8-Point Analysis...';
+
+    document.getElementById('placeholderResult').classList.add('d-none');
+    document.getElementById('resultCard').classList.remove('d-none');
+    document.getElementById('recommendedCrop').innerText = 'AI Analyzing...';
+
+    try {
+        const response = await fetch('/actions/log_ai_action.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `soil=${encodeURIComponent(soil)}&season=${encodeURIComponent(season)}&location=${encodeURIComponent(location)}`
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            document.getElementById('recommendedCrop').innerText = data.crop || data.name;
+            document.getElementById('resWhy').innerText        = data.why || data.reasoning || '--';
+            document.getElementById('resSeverity').innerText   = data.severity || data.yield || '--';
+            document.getElementById('resTreatment').innerText  = data.treatment || data.fertilizer || '--';
+            document.getElementById('resQuantity').innerText   = data.quantity || data.water || '--';
+            document.getElementById('resHow').innerText        = data.how || '--';
+            document.getElementById('resWhen').innerText       = data.when || '--';
+            document.getElementById('resPrevention').innerText = data.prevention || '--';
+        } else {
+            document.getElementById('recommendedCrop').innerText = 'Error!';
+        }
+    } catch(e) {
+        document.getElementById('recommendedCrop').innerText = 'Server Connection Error!';
+    }
+
+    btn.disabled = false;
+    btn.innerHTML = 'Generate 8-Point AI Report';
+});
+</script>
+
+<%- include('../partials/footer') %>

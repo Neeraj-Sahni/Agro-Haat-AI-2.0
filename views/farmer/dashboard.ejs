@@ -1,0 +1,81 @@
+<%- include('../partials/header', { page_title: 'Farmer Dashboard' }) %>
+<%- include('../partials/navbar_farmer') %>
+
+<div class="container mt-5">
+    <div class="row align-items-center mb-5 animate-fade-in-up">
+        <div class="col-md-8">
+            <h1 class="display-4 text-success mb-2">Welcome back, <%= user ? user.fullname : 'Farmer' %>! 👋</h1>
+            <p class="text-muted fs-5">Your farm's digital command center is ready. What would you like to do today?</p>
+        </div>
+        <div class="col-md-4 text-md-end">
+            <div class="dropdown">
+                <button class="btn btn-premium btn-premium-green shadow dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    <i class="fas fa-bolt me-2"></i>Quick Actions
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end shadow border-0 animate-fade-in-up">
+                    <li><a class="dropdown-item" href="/farmer/add_product"><i class="fas fa-plus-circle me-2 text-success"></i> Add New Product</a></li>
+                    <li><a class="dropdown-item" href="/farmer/view_orders"><i class="fas fa-tasks me-2 text-primary"></i> Manage Orders</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/farmer/weather"><i class="fas fa-cloud-sun me-2 text-info"></i> Check Weather</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="row g-4 mb-5 animate-fade-in-up" style="animation-delay: 0.1s;">
+        <div class="col-md-3">
+            <div class="glass-card stat-card border-start border-4 border-success">
+                <div class="stat-value text-success"><%= active_products || 0 %></div>
+                <div class="stat-label">Active Products</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="glass-card stat-card border-start border-4 border-primary">
+                <div class="stat-value text-primary"><%= total_orders || 0 %></div>
+                <div class="stat-label">Total Orders</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="glass-card stat-card border-start border-4 border-warning">
+                <div class="stat-value text-warning">₹<%= Number(monthly_revenue || 0).toFixed(2) %></div>
+                <div class="stat-label">This Month Revenue</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="glass-card stat-card border-start border-4 border-info">
+                <div class="stat-value text-info"><%= Number(products_sold || 0).toFixed(2) %></div>
+                <div class="stat-label">Units Sold</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4 animate-fade-in-up" style="animation-delay: 0.2s;">
+        <%
+        const features = [
+            { title: 'AI Crop Recommendation', icon: 'fa-seedling', color: 'success', desc: 'Get smart suggestions on what to plant based on soil and weather.', link: '/farmer/crop_recommendation', btn: 'Explore Models' },
+            { title: 'Weather Forecast', icon: 'fa-cloud-sun-rain', color: 'primary', desc: 'Real-time localized weather updates and severe alerts.', link: '/farmer/weather', btn: 'Check Weather' },
+            { title: 'Soil Health Analysis', icon: 'fa-vial', color: 'warning', desc: 'Analyze soil nutrients and receive fertilizer tips.', link: '/farmer/soil_analysis', btn: 'Analyze Soil' },
+            { title: 'Pest & Disease Alerts', icon: 'fa-bug', color: 'danger', desc: 'Identify diseases using AI scanner and get treatment tips.', link: '/farmer/pest_detection', btn: 'Scan Crop' },
+            { title: 'Market Price Updates', icon: 'fa-chart-line', color: 'info', desc: 'Live market prices from local mandis for optimal value.', link: '/farmer/market_prices', btn: 'View Rates' },
+            { title: 'Machinery Rental', icon: 'fa-tractor', color: 'secondary', desc: 'Find and rent modern farming equipment nearby.', link: '/farmer/machinery', btn: 'Find Equipment' },
+            { title: 'Expert Support', icon: 'fa-comments', color: 'dark', desc: 'Connect with agronomists for personalized advice.', link: '/farmer/support', btn: 'Ask Expert' },
+            { title: 'Sell Harvest', icon: 'fa-box-open', color: 'success', desc: 'List your products directly to customers.', link: '/farmer/manage_products', btn: 'Manage Inventory' },
+        ];
+        %>
+        <% features.forEach(f => { %>
+            <div class="col-lg-3 col-md-6">
+                <div class="glass-card h-100 p-4 d-flex flex-column text-center">
+                    <div class="mb-3">
+                        <i class="fas <%= f.icon %> fa-3x text-<%= f.color %>"></i>
+                    </div>
+                    <h5 class="fw-bold mb-2"><%= f.title %></h5>
+                    <p class="text-muted small flex-grow-1"><%= f.desc %></p>
+                    <a href="<%= f.link %>" class="btn btn-outline-<%= f.color %> btn-sm rounded-pill mt-3 px-4"><%= f.btn %></a>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,96 @@
+<%- include('../partials/header', { page_title: 'Delivery Plans' }) %>
+<%- include('../partials/navbar_customer') %>
+
+<div class="container mt-5 mb-5">
+    <div class="text-center mb-5 animate-fade-in-up">
+        <h2 class="text-primary fw-bold" style="color: var(--primary-blue) !important;">Freshness on Autopilot 📦</h2>
+        <p class="text-muted">Choose a plan that fits your family's needs and never run out of fresh organic produce.</p>
+    </div>
+
+    <% if (typeof msg !== 'undefined' && msg) { %>
+        <div class="alert alert-<%= typeof msg_type !== 'undefined' ? msg_type : 'info' %> alert-dismissible fade show shadow-sm border-0" role="alert">
+            <%= msg %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+
+    <% if (current_sub) { %>
+        <div class="glass-card p-4 mb-5 border-start border-4 border-success animate-fade-in-up">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="fw-bold text-success mb-1">Your Active Subscription</h5>
+                    <p class="mb-0 text-muted">Plan: <strong><%= current_sub.plan_name %></strong> | Status: <span class="badge bg-success">Active</span></p>
+                    <small class="text-muted">Expires on: <%= new Date(current_sub.expiry_date || current_sub.end_date).toLocaleDateString() %></small>
+                </div>
+                <i class="fas fa-check-circle fa-3x text-success opacity-25"></i>
+            </div>
+        </div>
+    <% } else { %>
+        <div class="glass-card p-4 mb-5 border-start border-4 border-warning animate-fade-in-up">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="fw-bold text-warning mb-1">No Active Subscription</h5>
+                    <p class="mb-0 text-muted">Subscribe to a plan below to get fresh produce delivered to your door!</p>
+                </div>
+                <i class="fas fa-box-open fa-3x text-warning opacity-25"></i>
+            </div>
+        </div>
+    <% } %>
+
+    <div class="row g-4 align-items-center justify-content-center">
+        <% if (plans && plans.length > 0) { %>
+            <% 
+            const colors = ['warning', 'info', 'success'];
+            plans.forEach((row, i) => { 
+                const color = colors[i % 3];
+                const is_current = (current_sub && current_sub.plan_id == row.id);
+            %>
+                <div class="col-lg-4 col-md-6 animate-fade-in-up">
+                    <div class="glass-card h-100 p-4 text-center d-flex flex-column border-top border-4 border-<%= color %> <%= is_current ? 'shadow-lg' : '' %>">
+                        
+                        <% if (is_current) { %>
+                            <div class="badge bg-success mb-2 py-2">✅ Your Current Plan</div>
+                        <% } %>
+
+                        <h4 class="fw-bold mb-3"><%= row.plan_name %></h4>
+                        <div class="mb-4">
+                            <span class="display-5 fw-bold text-<%= color %>">₹<%= Number(row.price).toFixed(0) %></span>
+                            <span class="text-muted">/ <%= row.duration_days %> days</span>
+                        </div>
+                        <ul class="list-unstyled text-start flex-grow-1 mb-4">
+                            <% 
+                            const features = (row.description || '').split(',');
+                            features.forEach(feat => { 
+                            %>
+                                <li class="mb-2"><i class="fas fa-check-circle text-<%= color %> me-2"></i> <%= feat.trim() %></li>
+                            <% }); %>
+                        </ul>
+                        <form action="/actions/subscription_action.php" method="POST">
+                            <input type="hidden" name="plan_id" value="<%= row.id %>">
+                            <% if (is_current) { %>
+                                <button type="button" class="btn btn-success w-100 rounded-pill" disabled>
+                                    ✅ Current Plan
+                                </button>
+                            <% } else if (current_sub) { %>
+                                <button type="submit" class="btn btn-outline-<%= color === 'info' ? 'primary' : (color === 'success' ? 'success' : 'warning') %> w-100 rounded-pill">
+                                    🔄 Switch to This Plan
+                                </button>
+                            <% } else { %>
+                                <button type="submit" class="btn btn-premium w-100 btn-premium-<%= color === 'info' ? 'blue' : (color === 'success' ? 'green' : 'blue') %>">
+                                    Subscribe Now
+                                </button>
+                            <% } %>
+                        </form>
+                    </div>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <div class="col-12 text-center py-5">
+                <i class="fas fa-calendar-times text-muted mb-3" style="font-size: 3rem;"></i>
+                <h4 class="text-muted">No subscription plans available right now. Check back soon!</h4>
+            </div>
+        <% } %>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>
