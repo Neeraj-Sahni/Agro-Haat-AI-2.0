@@ -595,12 +595,16 @@ For production usage:
 # 👨‍💻 Developer
 
 ### Neeraj Sahni
+### Pranshu Gupta
 
 **B.Tech — Computer Science**  
 Noida Institute of Engineering and Technology (NIET), Greater Noida
 
 GitHub:  
 https://github.com/Neeraj-Sahni
+https://github.com/pranshu2810
+
+
 
 ---
 
