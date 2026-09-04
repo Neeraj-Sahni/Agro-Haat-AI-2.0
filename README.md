@@ -1,224 +1,319 @@
-﻿# 🌾 Agro-Haat AI 2.0
+# 🌾 Agro-Haat AI 2.0
 
-> An AI-powered smart agriculture platform designed to connect farmers, customers, agricultural information, and digital marketplace services in one intelligent web application.
+### AI-Powered Smart Farming & Digital Agriculture Platform
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-success)](https://agro-haat-ai.onrender.com)
-[![Node.js](https://img.shields.io/badge/Node.js-24.x-green)](https://nodejs.org/)
-[![Express.js](https://img.shields.io/badge/Express.js-Backend-lightgrey)](https://expressjs.com/)
-[![MySQL](https://img.shields.io/badge/Database-MySQL-blue)](https://www.mysql.com/)
-[![Render](https://img.shields.io/badge/Deployed%20on-Render-purple)](https://render.com/)
+Agro-Haat AI 2.0 is an intelligent digital agriculture platform designed to help farmers make better decisions using Artificial Intelligence, weather information, crop assistance, pest and disease support, market insights, and a digital marketplace.
+
+The platform connects **Farmers, Customers, AI Services, Market Information, and Product Management** into a single web-based ecosystem.
 
 ---
 
-## 📌 About the Project
+## 🚀 Live Demo
 
-**Agro-Haat AI 2.0** is a smart agriculture and digital marketplace platform developed to help farmers access useful agricultural information, AI-powered assistance, market insights, and digital commerce services through a single web application.
-
-The platform provides separate experiences for **farmers and customers**, allowing farmers to manage agricultural products and access intelligent farming assistance while customers can browse products, interact with the marketplace, and manage their orders.
-
-The project combines **Artificial Intelligence, web technologies, cloud database infrastructure, authentication, marketplace functionality, and email services** into one integrated platform.
+🌐 **Live Website:**  
+https://agro-haat-ai.onrender.com
 
 ---
 
-## 🎯 Problem Statement
+## 📌 Problem Statement
 
-Farmers often face difficulties in accessing reliable agricultural information, understanding crop-related problems, finding market opportunities, and connecting directly with customers.
+Farmers often face several challenges such as:
 
-Some common challenges include:
+- Lack of timely agricultural information
+- Difficulty identifying crop diseases and pests
+- Uncertainty about weather conditions
+- Lack of reliable market and mandi price information
+- Difficulty finding suitable crops and farming practices
+- Limited access to digital marketplaces
+- Difficulty managing agricultural products and orders
 
-- Limited access to intelligent agricultural assistance
-- Difficulty in finding useful farming information
-- Lack of convenient digital marketplace access
-- Difficulty connecting farmers with customers
-- Managing agricultural products and orders manually
-- Limited access to technology-driven farming support
-- Difficulty accessing different agricultural services from one platform
+These problems can result in reduced productivity, financial losses, and inefficient decision-making.
 
 ---
 
 ## 💡 Our Solution
 
-Agro-Haat AI 2.0 provides a unified digital platform that combines:
+Agro-Haat AI 2.0 provides a centralized platform where farmers can access intelligent agricultural assistance and digital services.
 
-- AI-powered agricultural assistance
-- Farming-related information
-- Weather-related support
-- Pest and disease assistance
-- Market and mandi insights
-- Farmer marketplace
-- Product management
-- Customer browsing and ordering
-- Order management
-- User authentication
-- Email and OTP-based functionality
+The platform combines:
 
-The goal is to make agricultural technology more accessible and useful for farmers while creating a digital marketplace connecting farmers and customers.
+- 🤖 AI-powered assistance
+- 🌱 Smart farming support
+- 🌦️ Weather information
+- 🐛 Pest and disease assistance
+- 📊 Market and mandi insights
+- 🛒 Digital marketplace
+- 📦 Product and order management
+- 👨‍🌾 Farmer dashboard
+- 👤 Customer dashboard
+- 🔐 Secure authentication
+- 📧 Email and OTP-based password recovery
 
 ---
 
 # ✨ Key Features
 
-## 🤖 AI-Powered Assistance
+## 🤖 AI Agricultural Assistant
 
-The platform provides AI-based assistance for agriculture-related queries and recommendations.
+The AI assistant helps users get agricultural guidance and answers farming-related questions.
 
-Users can interact with AI services to receive useful information related to farming and agricultural decision-making.
+It can assist with topics such as:
+
+- Crop selection
+- Farming practices
+- Soil-related questions
+- Crop problems
+- Pest and disease-related queries
+- Agricultural recommendations
 
 ---
 
-## 🌱 Smart Farming Support
+## 🌱 Smart Crop Assistance
 
-Agro-Haat provides farmers with technology-assisted farming support, helping them access information that can assist in better agricultural decision-making.
+Farmers can receive intelligent guidance related to crop selection and farming decisions.
+
+The system can consider agricultural information to provide useful recommendations for improving farming practices.
 
 ---
 
-## 🌦️ Weather Information
+## 🌦️ Weather Assistance
 
-Weather-related information can help farmers understand environmental conditions and make better decisions regarding farming activities.
+The platform provides weather-related information to help farmers plan agricultural activities.
+
+Weather information can help farmers make better decisions regarding:
+
+- Irrigation
+- Crop planning
+- Spraying
+- Harvesting
+- Weather-sensitive farming activities
 
 ---
 
 ## 🐛 Pest & Disease Assistance
 
-The platform provides assistance related to crop pests and diseases, helping farmers understand possible agricultural problems and potential solutions.
+Farmers can use the platform to get assistance regarding common crop pests and diseases.
+
+The feature helps users understand:
+
+- Possible crop problems
+- Pest-related issues
+- Disease symptoms
+- Possible preventive measures
+- Suggested agricultural actions
 
 ---
 
-## 💰 Market & Mandi Insights
+## 📊 Market & Mandi Insights
 
-Agro-Haat provides market-related information to help farmers understand agricultural product pricing and make better selling decisions.
+Agro-Haat provides market-related information to help farmers understand agricultural pricing and market conditions.
+
+This can help farmers make better decisions regarding:
+
+- Selling crops
+- Market selection
+- Price comparison
+- Market trends
 
 ---
 
 ## 🛒 Digital Marketplace
 
-Farmers can list agricultural products on the platform while customers can browse available products.
+The platform provides a marketplace where agricultural products can be listed and purchased.
 
-The marketplace provides a digital connection between farmers and customers.
+### Farmers can:
 
----
+- Add products
+- Manage product information
+- Manage available stock
+- View orders
 
-## 📦 Product & Order Management
+### Customers can:
 
-The platform supports product and order management functionality for marketplace operations.
-
-Farmers can manage their products, while customers can interact with available products and manage their orders.
+- Browse products
+- View product details
+- Add products to cart
+- Place orders
+- Track their purchases
 
 ---
 
 ## 👨‍🌾 Farmer Dashboard
 
-Farmers have access to dedicated functionality for:
+Farmers have access to a dedicated dashboard for managing their agricultural activities.
 
-- Managing products
-- Viewing orders
-- Accessing agricultural assistance
-- Managing account information
-- Using marketplace services
+The dashboard provides access to:
+
+- Products
+- Orders
+- AI assistance
+- Agricultural information
+- Market information
+- Farming-related services
 
 ---
 
 ## 👤 Customer Dashboard
 
-Customers can:
+Customers can use a dedicated dashboard to manage their marketplace activities.
 
-- Browse agricultural products
-- View product information
-- Manage their account
-- Place and manage orders
-- Interact with marketplace services
+Features include:
+
+- Product browsing
+- Cart management
+- Orders
+- Profile management
+- Marketplace access
 
 ---
 
 ## 🔐 Authentication & Security
 
-The application provides authentication functionality using:
+The application provides authentication functionality for users.
+
+Security-related features include:
 
 - User registration
-- Login
+- User login
 - Password hashing
 - Session-based authentication
-- Password recovery functionality
+- Role-based access
+- Password recovery
+- OTP-based password reset
 
-Passwords are securely handled using **bcryptjs**.
+Passwords are handled using secure hashing rather than storing plain-text passwords.
 
 ---
 
-## 📧 Email & OTP Functionality
+## 📧 Email & OTP Password Recovery
 
-The application uses **Nodemailer** for email-related functionality such as password recovery and OTP-based processes.
+The application includes a password recovery system using OTP verification.
+
+Basic flow:
+
+```text
+User requests password reset
+        ↓
+OTP is generated
+        ↓
+OTP is sent through email
+        ↓
+User enters OTP
+        ↓
+OTP is verified
+        ↓
+User creates a new password
+```
 
 ---
 
 # 🏗️ System Architecture
 
 ```text
-                         ┌──────────────────────┐
-                         │        Users         │
-                         │ Farmer / Customer    │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │    EJS Frontend      │
-                         │    HTML / CSS / JS   │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │   Node.js + Express  │
-                         │      Backend         │
-                         └──────────┬───────────┘
-                                    │
-              ┌─────────────────────┼─────────────────────┐
-              │                     │                     │
-              ▼                     ▼                     ▼
-      ┌───────────────┐     ┌───────────────┐     ┌───────────────┐
-      │ AI Services   │     │ Authentication│     │  Marketplace  │
-      │               │     │ & Sessions    │     │ & Orders      │
-      └───────┬───────┘     └───────┬───────┘     └───────┬───────┘
-              │                      │                     │
-              └──────────────────────┼─────────────────────┘
-                                     │
-                                     ▼
-                           ┌───────────────────┐
-                           │   Aiven MySQL     │
-                           │   Cloud Database  │
-                           └───────────────────┘
+                    ┌───────────────────────┐
+                    │       User            │
+                    │ Farmer / Customer     │
+                    └───────────┬───────────┘
+                                │
+                                ▼
+                    ┌───────────────────────┐
+                    │   Agro-Haat Web UI    │
+                    │   HTML / CSS / EJS    │
+                    └───────────┬───────────┘
+                                │
+                                ▼
+                    ┌───────────────────────┐
+                    │ Node.js + Express     │
+                    │      Backend          │
+                    └───────────┬───────────┘
+                                │
+              ┌─────────────────┼─────────────────┐
+              │                 │                 │
+              ▼                 ▼                 ▼
+      ┌──────────────┐  ┌──────────────┐  ┌──────────────┐
+      │ MySQL        │  │ AI Services  │  │ External     │
+      │ Database     │  │              │  │ APIs         │
+      └──────────────┘  └──────────────┘  └──────────────┘
+              │                 │                 │
+              └─────────────────┼─────────────────┘
+                                ▼
+                    ┌───────────────────────┐
+                    │    Agro-Haat AI       │
+                    │     Services          │
+                    └───────────────────────┘
+```
 
-                                     │
-                                     ▼
-                           ┌───────────────────┐
-                           │      Render       │
-                           │ Cloud Deployment  │
-                           └───────────────────┘
+---
 
+# 🧑‍💻 Technology Stack
 
-Deployment Stack
-Source Code: GitHub
-Application Hosting: Render
-Database Hosting: Aiven MySQL
-Backend: Node.js + Express.js
+## Frontend
 
-## 🌐 Live Demo
+- HTML5
+- CSS3
+- JavaScript
+- EJS
+- Bootstrap
 
-The deployed application is available at:
+## Backend
 
-## 👉 https://agro-haat-ai.onrender.com
+- Node.js
+- Express.js
 
-You can visit the live application to explore the platform.
+## Database
 
-## 🔄 Deployment Workflow
+- MySQL
+- MySQL2
 
-The project follows a Git-based deployment workflow:
+## Authentication & Security
 
+- Express Session
+- bcryptjs
+- Environment Variables
+
+## AI & APIs
+
+- AI-powered services
+- External API integrations
+- Weather API
+
+## Email
+
+- Nodemailer
+- Gmail SMTP
+
+## Deployment
+
+- GitHub
+- Render
+- Aiven Cloud MySQL
+
+---
+
+# ☁️ Deployment Architecture
+
+The production application follows this architecture:
+
+```text
+                GitHub Repository
+                       │
+                       ▼
+              ┌─────────────────┐
+              │     Render      │
+              │ Node.js Server  │
+              └────────┬────────┘
+                       │
+                       ▼
+              ┌─────────────────┐
+              │ Aiven Cloud     │
+              │     MySQL       │
+              └─────────────────┘
+```
+
+### Deployment Flow
+
+```text
 Developer
-    │
-    ▼
-Local Development
-    │
-    ▼
-Git Commit
     │
     ▼
 GitHub
@@ -227,125 +322,307 @@ GitHub
 Render
     │
     ▼
-Production Application
+Node.js + Express Application
     │
     ▼
-Aiven MySQL Database
+Aiven Cloud MySQL
+```
 
-When new code is pushed to the main GitHub branch, Render can automatically build and deploy the updated application.
+---
 
-## 🗄️ Database
+# 🗄️ Database
 
-The application uses MySQL as its relational database.
+The application uses a MySQL relational database for storing application data.
 
-The production database is hosted on Aiven Cloud.
+The database manages information related to areas such as:
 
-The database contains tables supporting different application modules, including areas such as:
+- Users
+- Farmers
+- Customers
+- Products
+- Orders
+- Authentication
+- Agricultural information
 
-Users
-Products
-Farm Products
-Orders
-Order Items
-Messages
-Machinery
-Subscription Plans
-Customer Subscriptions
-AI Recommendations
+The production database is hosted on **Aiven Cloud MySQL**.
 
-The application connects to the database using the mysql2 Node.js driver.
+---
 
-## 🔐 Authentication Flow
+# 📁 Project Structure
 
+```text
+Agro-Haat-AI-2.0/
+│
+├── config/
+│   └── db.js
+│
+├── public/
+│   ├── css/
+│   ├── js/
+│   └── images/
+│
+├── routes/
+│   ├── auth routes
+│   ├── farmer routes
+│   ├── customer routes
+│   └── other application routes
+│
+├── views/
+│   ├── authentication/
+│   ├── farmer/
+│   ├── customer/
+│   └── other views
+│
+├── server.js
+├── package.json
+├── package-lock.json
+├── .gitignore
+├── .env
+└── README.md
+```
+
+> **Note:** `.env` contains private configuration and secrets and should never be committed to GitHub.
+
+---
+
+# ⚙️ Environment Variables
+
+The application uses environment variables for configuration.
+
+Example:
+
+```env
+PORT=3000
+
+SESSION_SECRET=your_session_secret
+
+DB_HOST=your_database_host
+DB_PORT=3306
+DB_NAME=your_database_name
+DB_USER=your_database_user
+DB_PASS=your_database_password
+
+AI_PROVIDER=your_ai_provider
+
+GITHUB_TOKEN=your_token
+GITHUB_MODEL=your_model
+
+EMAIL_SERVICE=gmail
+EMAIL_USER=your_email
+EMAIL_PASS=your_email_password
+
+WEATHER_API_KEY=your_weather_api_key
+```
+
+Never expose API keys, database passwords, email passwords, or other secrets publicly.
+
+---
+
+# 💻 Local Installation
+
+## 1. Clone the Repository
+
+```bash
+git clone https://github.com/Neeraj-Sahni/Agro-Haat-AI-2.0.git
+```
+
+Move into the project directory:
+
+```bash
+cd Agro-Haat-AI-2.0
+```
+
+---
+
+## 2. Install Dependencies
+
+```bash
+npm install
+```
+
+---
+
+## 3. Configure Environment Variables
+
+Create a `.env` file in the project root.
+
+Add the required database, authentication, AI, email, and API configuration.
+
+---
+
+## 4. Start the Application
+
+```bash
+node server.js
+```
+
+The application will run locally on:
+
+```text
+http://localhost:3000
+```
+
+---
+
+# 🔄 Authentication Flow
+
+```text
 User
-  │
-  ▼
+ │
+ ▼
 Registration / Login
-  │
-  ▼
-Express Authentication Routes
-  │
-  ▼
-Password Verification
-  │
-  ▼
-Session Creation
-  │
-  ▼
-Authenticated Dashboard
+ │
+ ▼
+Authentication
+ │
+ ▼
+Session Created
+ │
+ ▼
+Role-Based Dashboard
+ │
+ ├── Farmer Dashboard
+ │
+ └── Customer Dashboard
+```
 
-Passwords are handled using secure hashing through bcryptjs.
+---
 
-## 🤖 AI Workflow
+# 🤖 AI Workflow
 
+```text
 User Query
-    │
-    ▼
-Express Backend
-    │
-    ▼
+     │
+     ▼
+Agro-Haat AI Interface
+     │
+     ▼
+Backend API
+     │
+     ▼
 AI Service
-    │
-    ▼
-GitHub Model
-    │
-    ▼
+     │
+     ▼
 AI Response
-    │
-    ▼
-User Interface
+     │
+     ▼
+User
+```
 
-The AI layer is designed to provide intelligent assistance for agriculture-related use cases.
+---
 
-## 📈 Future Scope
+# 🎯 Project Objectives
 
-The platform can be further enhanced with:
+The major objectives of Agro-Haat AI 2.0 are:
 
-Advanced crop recommendation systems
-Real-time mandi price integration
-Multilingual agricultural assistance
-Voice-based AI assistant
-Mobile application
-IoT-based soil monitoring
-Real-time crop disease detection
-Satellite-based agricultural insights
-Personalized farmer recommendations
-Advanced analytics dashboards
-Digital payment integration
-Improved logistics and delivery tracking
+1. Provide accessible agricultural assistance.
+2. Help farmers make better farming decisions.
+3. Provide useful weather and market information.
+4. Support pest and disease-related decision making.
+5. Create a digital marketplace for agricultural products.
+6. Connect farmers and customers through a single platform.
+7. Use AI to improve agricultural information accessibility.
+8. Build a scalable cloud-based agriculture platform.
 
-## 🌍 Sustainable Development Goals
+---
 
-Agro-Haat AI 2.0 supports technology-driven agricultural development and can contribute toward:
+# 🌍 Sustainable Development Goals
 
-SDG 2 — Zero Hunger
+Agro-Haat AI 2.0 supports the following UN Sustainable Development Goals:
 
-Supporting better agricultural decision-making and improving access to agricultural resources and markets.
+### 🌾 SDG 2 — Zero Hunger
 
-SDG 13 — Climate Action
+The platform supports better agricultural decision-making and contributes toward improved food production.
 
-Using technology and information to support more informed and sustainable agricultural practices.
+### 🌎 SDG 13 — Climate Action
 
-## 🎓 Project Highlights
+Weather awareness and climate-related agricultural information can help farmers make more informed decisions under changing environmental conditions.
 
-AI-powered agriculture platform
-Farmer-focused digital services
-Integrated agricultural marketplace
-Cloud-hosted MySQL database
-Cloud deployment using Render
-GitHub-based development workflow
-Separate farmer and customer experiences
-Authentication and session management
-Email-based password recovery
-Modular Node.js and Express.js backend
+---
 
-## 🔒 Security Best Practices
+# 🔮 Future Scope
 
-The project follows basic application security practices including:
+Future versions of Agro-Haat AI can include:
 
-Password hashing using bcryptjs
-Environment variables for sensitive configuration
-Session-based authentication
-Separation of configuration from source code
-Secure cloud database connection
-No sensitive credentials stored in the README
+- AI-based crop disease image detection
+- Advanced crop recommendation models
+- IoT-based soil monitoring
+- Smart irrigation recommendations
+- Satellite-based crop monitoring
+- Real-time mandi price integration
+- Voice-based agricultural assistant
+- Multilingual AI assistance
+- Personalized farmer recommendations
+- AI-based yield prediction
+- Advanced analytics dashboard
+- Mobile application
+
+---
+
+# 📈 Project Highlights
+
+- 🌱 AI-powered agriculture platform
+- 🤖 Intelligent agricultural assistance
+- 🐛 Pest and disease support
+- 🌦️ Weather information
+- 📊 Market insights
+- 🛒 Digital marketplace
+- 👨‍🌾 Farmer management
+- 👤 Customer management
+- 🔐 Authentication and security
+- 📧 OTP-based password recovery
+- ☁️ Cloud database deployment
+- 🚀 Live production deployment
+
+---
+
+# 🔒 Security Best Practices
+
+For production usage:
+
+- Never commit `.env` files.
+- Never expose API keys.
+- Never expose database passwords.
+- Use strong session secrets.
+- Use secure password hashing.
+- Use HTTPS in production.
+- Validate user input.
+- Restrict database permissions.
+- Keep dependencies updated.
+
+---
+
+# 👨‍💻 Developer
+
+### Neeraj Sahni
+
+**B.Tech — Computer Science**  
+Noida Institute of Engineering and Technology (NIET), Greater Noida
+
+GitHub:  
+https://github.com/Neeraj-Sahni
+
+---
+
+# 📜 License
+
+This project is developed for educational, academic, and demonstration purposes.
+
+---
+
+# ⭐ Support
+
+If you find this project useful, consider giving the repository a ⭐ on GitHub.
+
+---
+
+## 🌾 Agro-Haat AI 2.0
+
+### *Technology for Smarter Farming, Better Decisions, and a Connected Agricultural Future.*
+
+```text
+AI + Agriculture + Marketplace + Cloud
+                 ↓
+          Agro-Haat AI 2.0
+```
+
