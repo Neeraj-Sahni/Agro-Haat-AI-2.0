@@ -192,4 +192,160 @@ The application uses **Nodemailer** for email-related functionality such as pass
                            │      Render       │
                            │ Cloud Deployment  │
                            └───────────────────┘
- 
+
+
+Deployment Stack
+Source Code: GitHub
+Application Hosting: Render
+Database Hosting: Aiven MySQL
+Backend: Node.js + Express.js
+
+## 🌐 Live Demo
+
+The deployed application is available at:
+
+## 👉 https://agro-haat-ai.onrender.com
+
+You can visit the live application to explore the platform.
+
+## 🔄 Deployment Workflow
+
+The project follows a Git-based deployment workflow:
+
+Developer
+    │
+    ▼
+Local Development
+    │
+    ▼
+Git Commit
+    │
+    ▼
+GitHub
+    │
+    ▼
+Render
+    │
+    ▼
+Production Application
+    │
+    ▼
+Aiven MySQL Database
+
+When new code is pushed to the main GitHub branch, Render can automatically build and deploy the updated application.
+
+## 🗄️ Database
+
+The application uses MySQL as its relational database.
+
+The production database is hosted on Aiven Cloud.
+
+The database contains tables supporting different application modules, including areas such as:
+
+Users
+Products
+Farm Products
+Orders
+Order Items
+Messages
+Machinery
+Subscription Plans
+Customer Subscriptions
+AI Recommendations
+
+The application connects to the database using the mysql2 Node.js driver.
+
+## 🔐 Authentication Flow
+
+User
+  │
+  ▼
+Registration / Login
+  │
+  ▼
+Express Authentication Routes
+  │
+  ▼
+Password Verification
+  │
+  ▼
+Session Creation
+  │
+  ▼
+Authenticated Dashboard
+
+Passwords are handled using secure hashing through bcryptjs.
+
+## 🤖 AI Workflow
+
+User Query
+    │
+    ▼
+Express Backend
+    │
+    ▼
+AI Service
+    │
+    ▼
+GitHub Model
+    │
+    ▼
+AI Response
+    │
+    ▼
+User Interface
+
+The AI layer is designed to provide intelligent assistance for agriculture-related use cases.
+
+## 📈 Future Scope
+
+The platform can be further enhanced with:
+
+Advanced crop recommendation systems
+Real-time mandi price integration
+Multilingual agricultural assistance
+Voice-based AI assistant
+Mobile application
+IoT-based soil monitoring
+Real-time crop disease detection
+Satellite-based agricultural insights
+Personalized farmer recommendations
+Advanced analytics dashboards
+Digital payment integration
+Improved logistics and delivery tracking
+
+## 🌍 Sustainable Development Goals
+
+Agro-Haat AI 2.0 supports technology-driven agricultural development and can contribute toward:
+
+SDG 2 — Zero Hunger
+
+Supporting better agricultural decision-making and improving access to agricultural resources and markets.
+
+SDG 13 — Climate Action
+
+Using technology and information to support more informed and sustainable agricultural practices.
+
+## 🎓 Project Highlights
+
+AI-powered agriculture platform
+Farmer-focused digital services
+Integrated agricultural marketplace
+Cloud-hosted MySQL database
+Cloud deployment using Render
+GitHub-based development workflow
+Separate farmer and customer experiences
+Authentication and session management
+Email-based password recovery
+Modular Node.js and Express.js backend
+
+## 🔒 Security Best Practices
+
+The project follows basic application security practices including:
+
+Password hashing using bcryptjs
+Environment variables for sensitive configuration
+Session-based authentication
+Separation of configuration from source code
+Secure cloud database connection
+No sensitive credentials stored in the README
