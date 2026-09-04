@@ -601,8 +601,8 @@ For production usage:
 Noida Institute of Engineering and Technology (NIET), Greater Noida
 
 GitHub:  
-https://github.com/Neeraj-Sahni
-https://github.com/pranshu2810
+- https://github.com/Neeraj-Sahni
+- https://github.com/pranshu2810
 
 
 
